@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './Views/PokemonList';
+import App from './App';
 import { PokemonProvider } from './PokemonContext';
 import { BrowserRouter } from 'react-router-dom';
 
