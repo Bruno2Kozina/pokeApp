@@ -11,9 +11,8 @@ import PokemonDetails from './Views/PokemonDetails';
 const App = () => {
     return (
         <Routes>
-            <Route path="/" element={<PokemonList />}>
-                <Route path="pokemon/:pokemonId" element={<PokemonDetails />} />
-            </Route>
+            <Route path="pokemon/:pokemonId" element={<PokemonDetails />} />
+            <Route path="/" element={<PokemonList />} />
         </Routes>
     )
 }
