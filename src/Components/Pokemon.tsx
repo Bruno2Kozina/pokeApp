@@ -19,6 +19,7 @@ const Pokemon: FC<IProps> = ({ name, url }) => {
 
      <Link
         to={`pokemon/${pokeId}`} // pokemon id
+        state={{name}}
         >
       {name}
       </Link>
