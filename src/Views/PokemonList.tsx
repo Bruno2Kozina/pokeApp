@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import axios from 'axios';
 import Pokemon from '../Components/Pokemon';
-import { IPokemon, PokemonContext } from '../PokemonContext';
+import { IPokemon, PokemonContext } from '../core/PokemonContext';
 import { Link } from 'react-router-dom';
 
 export interface PostType {
@@ -34,7 +34,6 @@ function PokemonList() {
       {pokemonContext.pokemons.map(poke => (
         
         <Pokemon name={poke.name} url={poke.url} key={poke.name}/>
-      // </Link>
       ))}
     </div>
   );

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import { PokemonProvider } from './PokemonContext';
+import App from './core/App';
+import { PokemonProvider } from './core/PokemonContext';
 import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
