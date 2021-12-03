@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 import Pokemonbackground from '../Assets/Images/Pokemon-background.png'
 
+//GLOBAL
+export const GlobalContainer = styled.div`
+ 
+`
 
 
 //Pokemon List
@@ -8,11 +12,14 @@ import Pokemonbackground from '../Assets/Images/Pokemon-background.png'
 
 
 export const MainWrapper = styled("div")<{}>`
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     background-color: orange;
     display: flex;
-    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0 0;
 `
 
 
@@ -20,7 +27,8 @@ export const ListContainer = styled("div")<{}>`
     display: flex;
     flex-flow: row wrap;
     width: 75%;
-    align-self: flex-end;
+    height: 100%;
+    
 `
 
 export const CardWrapper = styled.div`
@@ -29,9 +37,9 @@ export const CardWrapper = styled.div`
     justify-content: center;
     align-items: center;
     background-color: white;
-    width: 200px;
-    height: 200px;
-    margin: 20px;
+    width: 160px;
+    height: 160px;
+    margin: 10px;
     box-shadow: 0px 8px 21px -6px #000000;
     border-radius: 10px;
 
@@ -53,4 +61,34 @@ export const CardName = styled.p`
     font-weight: 600;
 `
 
+export const Pagination = styled.div`
 
+    position:relative;
+    height: 80px;
+    width: 450px;
+    margin: 30px auto;
+
+.paginationBttns {
+    width: 80%;
+    height: 40px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .paginationBttns a {
+    padding: 6px;
+    margin: 6px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .paginationBttns a:hover {
+    background-color: red;
+  }
+  
+  .paginationActive a {
+    color: white;
+    background-color: red;
+  }
+`;
