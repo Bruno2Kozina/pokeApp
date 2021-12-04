@@ -4,12 +4,22 @@ import './index.css';
 import App from './core/App';
 import { PokemonProvider } from './core/PokemonContext';
 import { BrowserRouter } from 'react-router-dom';
+import {
+  Routes,
+  Route
+} from "react-router-dom";
+import PokemonList from './Views/PokemonList';
+import PokemonDetails from './Views/PokemonDetails';
+
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <PokemonProvider>
-        <App />
+      <Routes>
+            <Route path="pokemon/:pokemonId" element={<PokemonDetails />} />
+            <Route path="/" element={<App />} />
+      </Routes>
       </PokemonProvider>
     </BrowserRouter>
   </React.StrictMode>,
