@@ -3,11 +3,14 @@ import { createContext, FC, useState } from "react";
 export interface IPokemon {
     name: string;
     url: string;
+    nextPokemon?: string[];
 }
 
 interface IPokemonContext {
     pokemons: IPokemon[];
     addPokemons: (data: IPokemon[]) => void;
+    pokeTypes: IPokemon[];
+    addPokeTypes: (data: IPokemon[]) => void;
     searchValue: string;
     changeSearchValue: (data: string) => void;
     pageNumber: number;
@@ -25,15 +28,20 @@ export const PokemonContext = createContext<IPokemonContext>(undefined as any);
 
 export const PokemonProvider: FC = ({ children }) => {
     const [pokemons, setPokemons] = useState<IPokemon[]>([]);
+    const [pokeTypes, setPoketypes] = useState<IPokemon[]>([]);
     const [searchValue, setSearchValue] = useState<string>("");
-    const [pageNumber, setPageNumber] = useState(0);
-    const [pokemonCount, setPokemonCount] = useState(0);
-    const [itemsPerPage, setItemsPerPage] = useState<any>(30)
-    const [isLoading, setIsLoading] = useState(true);
+    const [pageNumber, setPageNumber] = useState<number>(0);
+    const [pokemonCount, setPokemonCount] = useState<number>(0);
+    const [itemsPerPage, setItemsPerPage] = useState<number>(20)
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     const addPokemons = (data: IPokemon[]) => {
         setPokemons(data);
     };
+
+    const addPokeTypes = (data: IPokemon[]) => {
+        setPoketypes(data)
+    }
 
     const changeSearchValue = (data: string) => {
         setSearchValue(data);
@@ -49,6 +57,7 @@ export const PokemonProvider: FC = ({ children }) => {
 
     const changeItemsPerPage = (data: number) => {
         setItemsPerPage(data);
+        setPageNumber(0)
     };
 
     const changeIsLoading = (data: boolean) => {
@@ -56,7 +65,7 @@ export const PokemonProvider: FC = ({ children }) => {
     };
 
     return (
-        <PokemonContext.Provider value={{ pokemons, addPokemons, searchValue, changeSearchValue, pageNumber, changePageNumber, pokemonCount, changePokemonCount, itemsPerPage, changeItemsPerPage, isLoading, changeIsLoading  }}>
+        <PokemonContext.Provider value={{ pokemons, addPokemons, pokeTypes, addPokeTypes, searchValue, changeSearchValue, pageNumber, changePageNumber, pokemonCount, changePokemonCount, itemsPerPage, changeItemsPerPage, isLoading, changeIsLoading  }}>
             {children}
         </PokemonContext.Provider>
     )

@@ -1,8 +1,12 @@
 import styled from 'styled-components'
 import backgroundLightImg from '../Assets/Images/backgroundLightImg.jpeg'
 
+
 export const MainWrapper = styled("div")<{}>`
     background-image: url(${backgroundLightImg});
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,49 +30,23 @@ export const MainWrapper = styled("div")<{}>`
 export const ListContainerBox = styled("div")<{}>`
     display: flex;
     justify-content: center;
+    align-items: center;
     height: 80vh;
-    width: 100%;
+    width: 100vw;
 `
 
 export const ListContainer = styled("div")<{}>`
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-flow: row wrap;
-    width: 70%;
+    flex-grow: 0;
+    width: 80%;
     margin: 10px 0;
     padding: 4px 20px;
     max-height: 100%;
-    justify-content: space-between;
     overflow-y: auto;
     border-radius: 20px;
-`
-export const Pagination = styled.div`
-    display: flex;
-    position: relative;
-    height: 10vh;
-
-    .paginationBttns {
-        width: 80%;
-        height: 40px;
-        list-style: none;
-        display: flex;
-    }
-  
-    .paginationBttns a {
-        padding: 6px;
-        margin: 6px;
-        color: blue;
-        cursor: pointer;
-    }
-    
-    .paginationBttns a:hover {
-        background-color: red;
-    }
-    
-    .paginationActive a {
-        color: blue;
-        background-color: red;
-        border-radius: 50%;
-    }
 `
 
 export const CardWrapper = styled.div`
@@ -76,11 +54,11 @@ export const CardWrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(178,34,34, 0.7);
+    background-color: rgb(135,206,250, 0.5);
     opacity: 0.9;
     width: 160px;
     height: 160px;
-    margin: 10px;
+    margin: 30px;
     box-shadow: 0px 6px 14px -4px #000000;
     border-radius: 10px;
     transition: 0.4s;
@@ -100,3 +78,93 @@ export const CardName = styled.p`
     font-size: 20px;
     font-weight: 600;
 `
+
+export const Pagination = styled.div`
+    display: flex;
+    position: relative;
+    height: 10vh;
+
+    .paginationBttns {
+        width: 80%;
+        height: 40px;
+        list-style: none;
+        display: flex;
+    }
+  
+    .paginationBttns a {
+        padding: 6px;
+        margin: 6px;
+        color: white;
+        cursor: pointer;
+    }
+    
+    .paginationBttns a:hover {
+        color: red;
+    }
+    
+    .paginationActive a {
+        color: blue;
+    }
+`
+
+export const InputComponent = styled.div`
+
+    
+`
+
+interface DetailContainerProps {
+    readonly direction?: string;
+    readonly bg?: string
+}
+
+interface DetailsImage {
+    readonly br?: string;
+    readonly border?: string;
+    readonly display?: string;
+    src?: any;
+}
+
+export const DetailsContainer = styled.div<DetailContainerProps>`
+  display: flex;
+  flex-direction: ${props => props.direction || "row"};
+  align-items: center;
+  justify-content: center;
+  background-color: ${props => props.bg};
+`;
+
+export const DetailsCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 4px;
+  margin: 50px;
+  border: 2px solid black;
+`
+
+export const DetailsImage = styled.img<DetailsImage>`
+  width: ${props => props.width};
+  heigth: ${props => props.height};
+  border: ${props => props.border || "none"};
+  display: ${props => props.display || "block"};
+  border-radius: ${props => props.br || "none"};
+`;
+
+export const DetailsImageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  
+`;
+
+export const DetailsStat = styled.div`
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 1px solid black;
+  margin: 10px;
+  padding: 0 5px;
+`
+
+export const DetailsText = styled.div`
+
+ `
