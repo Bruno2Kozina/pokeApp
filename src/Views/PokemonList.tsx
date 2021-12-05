@@ -11,26 +11,19 @@ export interface PostType {
 function PokemonList() {
   const pokemonContext = useContext(PokemonContext);
 
-  const {isLoading, pokemons, searchValue} = pokemonContext
-
   return (
     
       <ListContainerBox>
-        {isLoading ? 
-        <div>
-          ASDASDASD
-        </div>
-        :
         <ListContainer>
-          {pokemons.filter((poke) => {
-            if (searchValue == "") {
+          {pokemonContext.pokemons.filter((poke) => {
+            if (pokemonContext.searchValue == "") {
               return poke
-            } else if (poke.name.toLowerCase().includes(searchValue.toLowerCase()))
+            } else if (poke.name.toLowerCase().includes(pokemonContext.searchValue.toLowerCase()))
               return poke
           }).map(poke => (
             <Pokemon name={poke.name} url={poke.url} key={poke.name}/>
           ))}
-        </ListContainer>}
+        </ListContainer>
       </ListContainerBox>
   );
 }
