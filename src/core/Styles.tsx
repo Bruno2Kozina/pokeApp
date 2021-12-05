@@ -112,7 +112,7 @@ export const InputComponent = styled.div`
     
 `
 
-interface DetailContainerProps {
+interface DetailsContainerProps {
     readonly direction?: string;
     readonly bg?: string
 }
@@ -124,7 +124,13 @@ interface DetailsImage {
     src?: any;
 }
 
-export const DetailsContainer = styled.div<DetailContainerProps>`
+interface DetailsStatProps {
+    readonly bg?: string
+    readonly width?: string
+}
+
+
+export const DetailsContainer = styled.div<DetailsContainerProps>`
   display: flex;
   flex-direction: ${props => props.direction || "row"};
   align-items: center;
@@ -138,7 +144,7 @@ export const DetailsCard = styled.div`
   background-color: white;
   border-radius: 4px;
   margin: 50px;
-  border: 2px solid black;
+  border: 2px solid skyblue;
 `
 
 export const DetailsImage = styled.img<DetailsImage>`
@@ -155,12 +161,21 @@ export const DetailsImageContainer = styled.div`
   
 `;
 
-export const DetailsStat = styled.div`
-  background-color: white;
+export const DetailsStat = styled.div<DetailsStatProps>`
+  background-color: ${props => props.bg};
+  width: ${props => props.width};
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border: 1px solid black;
+  margin: 10px;
+  padding: 0 5px;
+`
+
+
+export const DetailsTypes = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   margin: 10px;
   padding: 0 5px;
 `
