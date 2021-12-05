@@ -1,14 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './core/App';
+import App from './Views/App';
 import { PokemonProvider } from './core/PokemonContext';
 import { BrowserRouter } from 'react-router-dom';
 import {
   Routes,
   Route
 } from "react-router-dom";
-import PokemonList from './Views/PokemonList';
 import PokemonDetails from './Views/PokemonDetails';
 
 

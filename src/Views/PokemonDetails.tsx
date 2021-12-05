@@ -27,9 +27,7 @@ interface PokeDataApiResponse {
   abilities: []
   base_experience: number
   height: number
-  id: number
   name: string
-  order: number
   sprites: SpritesType
   stats: StatsType[]
   types: TypeType[]

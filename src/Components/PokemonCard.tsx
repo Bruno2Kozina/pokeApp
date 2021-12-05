@@ -9,7 +9,10 @@ type IProps = {
 }
 
 
-const Pokemon: FC<IProps> = ({ name, url }) => {
+const PokemonCard: FC<IProps> = ({ name, url }) => {
+
+
+
 
   const pokeUrl = url.split('/');
   const pokeIndex = pokeUrl[pokeUrl.length - 2]
@@ -29,4 +32,4 @@ const Pokemon: FC<IProps> = ({ name, url }) => {
   );
 }
 
-export default Pokemon;
+export default PokemonCard;
