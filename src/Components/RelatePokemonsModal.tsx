@@ -1,8 +1,13 @@
 import React, { useContext, useRef } from 'react';
-import Pokemon from './PokemonCard';
+import PokemonCard from './PokemonCard';
 import { PokemonContext } from '../core/PokemonContext';
-import {  } from '../core/Styles'
+import { ListContainer, ListContainerBox } from '../core/Styles'
 import styled from 'styled-components'
+import { useEffect } from 'react';
+import axios from 'axios';
+import { PokemonsByTypeApiResponse } from '../Views/App'
+import { FC } from 'react';
+import Loader from './Loader';
 
 const Background = styled.div`
     width: 100%;
@@ -15,42 +20,52 @@ const Background = styled.div`
 `;
 
 const ModalWrapper = styled.div`
-    width: 800px;
-    height: 500px;
+    display: flex;
+    width: 70vw;
+    height: 80vh;
     box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
     background: #fff;
     border-radius: 10px;
+    overflow: hidden;
 `;
 
-const ModalContent = styled.div`
-    display: flex;
-`;
 
-export interface PostType {
-	name: string
-    url: string
+interface IProps {
+    typeName: string;
+    onClose: () => void;
 }
 
-function RelatePokemonsModal() {
-    const modalRef = useRef();
+
+
+const RelatePokemonsModal: FC<IProps> = ({ onClose, typeName }) => {
 
     const pokemonContext = useContext(PokemonContext);
-    const { showModal, changeShowModal } = pokemonContext
+    const { isLoading, addPokemons, changeIsLoading } = pokemonContext
 
-    const closeModal = (e: React.SyntheticEvent<HTMLImageElement, Event>)=> {
-    if (modalRef.current === e.target) {
-        changeShowModal(false);
+    const fetchPokemonsByType = async () => {
+        const response = await axios.get<PokemonsByTypeApiResponse>(`https://pokeapi.co/api/v2/type/${typeName}`);
+        addPokemons(response.data.pokemon.map(poke => poke.pokemon))
+        changeIsLoading(false)
     }
-};
 
-  return (
-    <Background>
-        <ModalWrapper>
-            <ModalContent>
-            </ModalContent>
-        </ModalWrapper>
-    </Background>
-  );
+    useEffect(() => {
+        fetchPokemonsByType()
+    }, [])
+
+
+    return (
+        <Background onClick={onClose}>
+            <ModalWrapper>
+                {isLoading ? <Loader /> : <ListContainerBox>
+                    <ListContainer>
+                        {pokemonContext.pokemons.map((poke, i) => (
+                            <PokemonCard name={poke.name} url={poke.url} key={i} />
+                        ))}
+                    </ListContainer>
+                </ListContainerBox>}
+            </ModalWrapper>
+        </Background>
+    );
 }
 
 export default RelatePokemonsModal
