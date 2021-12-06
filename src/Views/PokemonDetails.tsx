@@ -1,6 +1,6 @@
 import React, { FC, useContext, useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router';
-import { imageOnErrorHandler, colors } from '../core/Utils'
+import { useParams } from 'react-router';
+import { colors } from '../core/Utils'
 import { PokemonContext } from '../core/PokemonContext';
 import axios from 'axios';
 import { DetailsTypes, MainWrapper, DetailsContainer, DetailsCard, DetailsImage, DetailsImageContainer, DetailsStat, DetailsText } from '../core/Styles'
@@ -36,7 +36,6 @@ interface PokeDataApiResponse {
 }
 
 const PokemonDetails: FC = ({ }) => {
-    const pokemonContext = useContext(PokemonContext);
 
     const [pokemonDetails, setPokemonDetails] = useState<PokeDataApiResponse>()
     const [image, setImage] = useState<number>(0);
@@ -47,15 +46,14 @@ const PokemonDetails: FC = ({ }) => {
 
     const backgroundColor = colors[pokemonDetails?.types[0].type.name as keyof typeof colors]
 
+    const fetchPokemonData = async () => {
+        const response = await axios.get<PokeDataApiResponse>(`https://pokeapi.co/api/v2/pokemon/${pokeIndex}/`)
+        setPokemonDetails(response.data)
+    }
+
     useEffect(() => {
-        const fetchPokemonData = async () => {
-            const response = await axios.get<PokeDataApiResponse>(`https://pokeapi.co/api/v2/pokemon/${pokeIndex}/`)
-            setPokemonDetails(response.data)
-        }
         fetchPokemonData()
     }, [])
-
-    
 
     const imageUrls = [pokemonDetails?.sprites?.back_default, pokemonDetails?.sprites?.front_default, pokemonDetails?.sprites?.back_shiny, pokemonDetails?.sprites?.front_shiny];
 

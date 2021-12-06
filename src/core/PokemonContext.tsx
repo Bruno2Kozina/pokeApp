@@ -23,7 +23,7 @@ interface IPokemonContext {
     changeIsLoading: (data: boolean) => void;
     pokemonsByTypes: IPokemon[];
     addPokemonsByTypes: (data: IPokemon[]) => void;
-   
+
 }
 
 export const PokemonContext = createContext<IPokemonContext>(undefined as any);

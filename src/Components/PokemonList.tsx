@@ -1,14 +1,9 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import PokemonCard from './PokemonCard';
 import { PokemonContext } from '../core/PokemonContext';
 import { ListContainer, ListContainerBox } from '../core/Styles'
 
-export interface PostType {
-	name: string
-    url: string
-}
-
-function PokemonList() {
+const PokemonList = () => {
     const pokemonContext = useContext(PokemonContext);
 
     return (
@@ -16,11 +11,11 @@ function PokemonList() {
             <ListContainer>
                 {pokemonContext.pokemons.filter((poke) => {
                     if (pokemonContext.searchValue == "") {
-                    return poke
+                        return poke
                     } else if (poke.name.toLowerCase().includes(pokemonContext.searchValue.toLowerCase()))
-                    return poke
+                        return poke
                 }).map((poke, i) => (
-                    <PokemonCard name={poke.name} url={poke.url} key={i}/>
+                    <PokemonCard name={poke.name} url={poke.url} key={i} />
                 ))}
             </ListContainer>
         </ListContainerBox>

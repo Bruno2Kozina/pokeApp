@@ -5,10 +5,7 @@ import { PokemonContext } from '../core/PokemonContext';
 import { MainWrapper, Pagination } from '../core/Styles'
 import ReactPaginate from 'react-paginate';
 import { isMobile } from 'react-device-detect'
-import InfiniteScroll from "react-infinite-scroll-component";
 import Loader from '../Components/Loader';
-import { SelectHTMLAttributes } from 'react';
-import { DetailedHTMLProps } from 'react';
 
 
 export interface PokemonType {
@@ -24,7 +21,7 @@ interface PokeApiResponse {
 }
 
 export interface PokemonsByTypeApiResponse {
-    pokemon: {pokemon: PokemonType}[]
+    pokemon: { pokemon: PokemonType }[]
 }
 
 interface PokeTypeApiResponse {
@@ -37,12 +34,9 @@ interface PokeTypeApiResponse {
 const App = () => {
 
     const pokemonContext = useContext(PokemonContext);
-    const { pokemons, addPokemons, pokeTypes, addPokeTypes, searchValue, changeSearchValue, pageNumber, changePageNumber, pokemonCount, changePokemonCount, itemsPerPage, changeItemsPerPage, changeIsLoading, isLoading } = pokemonContext
+    const { addPokemons, pokeTypes, addPokeTypes, searchValue, changeSearchValue, pageNumber, changePageNumber, pokemonCount, changePokemonCount, itemsPerPage, changeItemsPerPage, changeIsLoading, isLoading } = pokemonContext
 
-    const [nextResponse, setNextResponse] = useState('')
-    const [hasMore, setHasMore] = useState(true)
     const [typeFilter, setTypeFilter] = useState('none')
-
 
     const fetchPokemons = async () => {
         const response = await axios.get<PokeApiResponse>(`https://pokeapi.co/api/v2/pokemon?limit=${itemsPerPage}&offset=${pageNumber * itemsPerPage}`);
@@ -87,7 +81,7 @@ const App = () => {
         <MainWrapper>
             <div className='headerWrapper'>
                 <input
-                    onFocus={() => changeItemsPerPage(pokemonCount)} // only solution to search from list of all pokemons
+                    onFocus={() => changeItemsPerPage(pokemonCount)}
                     className='findPokeInput'
                     type="search"
                     name="search"
@@ -99,19 +93,12 @@ const App = () => {
                     {pokeTypes.map(type => <option value={type.name} key={type.name}>{type.name}</option>)}
                 </select>
             </div>
-
-            {/* <InfiniteScroll
-                dataLength={itemsPerPage} //This is important field to render the next data
-                next={fetchNextPokemons}
-                hasMore={hasMore}
-                loader={<Loader />}
-                endMessage={<EndMsg />}
-                > */}
             {isLoading ? <Loader /> : <PokemonList />}
-            {/* </InfiniteScroll> */}
-            {!isMobile && <Pagination>
+            <Pagination>
                 <div>
                     <ReactPaginate
+                        pageRangeDisplayed={3}
+                        marginPagesDisplayed={1}
                         previousLabel={"Previous"}
                         nextLabel={"Next"}
                         onPageChange={changePage}
@@ -122,7 +109,7 @@ const App = () => {
                         disabledClassName={"paginationDisabled"}
                         activeClassName={"paginationActive"} />
                 </div>
-            </Pagination>}
+            </Pagination>
             {!isMobile && <select className='itemsPerPage' onChange={(e) => (changeItemsPerPage(e.target.value), changeSearchValue(''))}>
                 <option value='20'>20</option>
                 <option value='40'>40</option>

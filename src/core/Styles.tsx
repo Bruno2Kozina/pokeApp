@@ -1,4 +1,3 @@
-import { constants } from 'http2'
 import styled from 'styled-components'
 import backgroundLightImg from '../Assets/Images/backgroundLightImg.jpeg'
 
@@ -19,7 +18,7 @@ interface DetailsStatProps {
     readonly maxWidth?: string
 }
 
-export const MainWrapper = styled("div")<{}>`
+export const MainWrapper = styled("div") <{}>`
     background-image: url(${backgroundLightImg});
     background-position: center;
     background-repeat: no-repeat;
@@ -69,7 +68,7 @@ export const MainWrapper = styled("div")<{}>`
     }
 `
 
-export const ListContainerBox = styled("div")<{}>`
+export const ListContainerBox = styled("div") <{}>`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,7 +76,7 @@ export const ListContainerBox = styled("div")<{}>`
     width: 100vw;
 `
 
-export const ListContainer = styled("div")<{}>`
+export const ListContainer = styled("div") <{}>`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -128,7 +127,7 @@ export const Pagination = styled.div`
 
     .paginationBttns {
         padding: 0;
-        width: 80%;
+        width: 70%;
         height: 40px;
         list-style: none;
         display: flex;
@@ -201,53 +200,24 @@ export const DetailsTypes = styled.div`
 
 export const DetailsText = styled.div`
     white-space: nowrap;
- `
-
-export const PokeLoader = styled.div`
-    
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    border: solid (50/25) black;
-    position: relative;    
-    background: linear-gradient(to bottom, #EEEEEE 0%,#FFFFFF 100%);;
-    margin: 10px auto;
-    animation: bounce 1000ms infinite;
-
-    &:before,
-    &:after{
-    content: "";
-    display: block;
-    }
-    
-    &,
-    &:before,
-    &:after{
-    transition: all 600ms cubic-bezier(.67,.4,.36,.75);
-    }
-    
-    &:before {
-    width: 50px;
-    height: (50/2) -(50/25/2);
-    border-bottom: solid (50p/25) black;
-    border-radius: (50/2) (50/2) 0 0;
-    background: linear-gradient(to bottom, #d10000 0%,#ff0000 50%);
-    }
-    
-    &:after {
-    content: "";
-    width: 50/5;
-    height: 50/5;
-    background: linear-gradient(to bottom, #fff 0%,#ccc 100%);
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    border-radius: 50%;
-    box-shadow: 0 0 0 (50/50) black,
-                0 0 0 (50/25) #ddd,
-                0 0 0 (50/14) black,
-                0 0 (50/10) (50/17) rgba(0,0,0,0.4);
-    }
-    
 `
+
+export const Background = styled.div`
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const ModalWrapper = styled.div`
+    display: flex;
+    width: 70vw;
+    height: 80vh;
+    box-shadow: 0 5px 16px rgba(0, 0, 0, 0.2);
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+`;
