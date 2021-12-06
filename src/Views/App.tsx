@@ -39,6 +39,7 @@ const App = () => {
     const [typeFilter, setTypeFilter] = useState('none')
 
     const fetchPokemons = async () => {
+        changeIsLoading(true)
         const response = await axios.get<PokeApiResponse>(`https://pokeapi.co/api/v2/pokemon?limit=${itemsPerPage}&offset=${pageNumber * itemsPerPage}`);
         addPokemons(response.data.results)
         changePokemonCount(response.data.count)
@@ -48,7 +49,6 @@ const App = () => {
     const fetchPokemonsByType = async () => {
         const response = await axios.get<PokemonsByTypeApiResponse>(`https://pokeapi.co/api/v2/type/${typeFilter}`);
         addPokemons(response.data.pokemon.map(poke => poke.pokemon))
-        changeIsLoading(false)
         changeItemsPerPage(pokemonCount);
     }
 

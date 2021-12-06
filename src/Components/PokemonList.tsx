@@ -15,7 +15,7 @@ const PokemonList = () => {
                     } else if (poke.name.toLowerCase().includes(pokemonContext.searchValue.toLowerCase()))
                         return poke
                 }).map((poke, i) => (
-                    <PokemonCard name={poke.name} url={poke.url} key={i} />
+                    <PokemonCard name={poke.name} url={poke.url} key={i} /> 
                 ))}
             </ListContainer>
         </ListContainerBox>

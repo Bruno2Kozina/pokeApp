@@ -19,6 +19,7 @@ const RelatePokemonsModal: FC<IProps> = ({ onClose, typeName }) => {
     const { isLoading, addPokemons, changeIsLoading } = pokemonContext
 
     const fetchPokemonsByType = async () => {
+        changeIsLoading(true)
         const response = await axios.get<PokemonsByTypeApiResponse>(`https://pokeapi.co/api/v2/type/${typeName}`);
         addPokemons(response.data.pokemon.map(poke => poke.pokemon))
         changeIsLoading(false)

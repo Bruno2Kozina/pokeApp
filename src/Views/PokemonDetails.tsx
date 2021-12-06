@@ -6,6 +6,7 @@ import axios from 'axios';
 import { DetailsTypes, MainWrapper, DetailsContainer, DetailsCard, DetailsImage, DetailsImageContainer, DetailsStat, DetailsText } from '../core/Styles'
 import RelatePokemonsModal from '../Components/RelatePokemonsModal';
 import PokeBall from '../Assets/Images/Pokeball-alt.jpeg';
+import Loader from '../Components/Loader';
 
 export interface SpritesType {
     back_default: string | null
@@ -37,6 +38,9 @@ interface PokeDataApiResponse {
 
 const PokemonDetails: FC = ({ }) => {
 
+    const pokemonContext = useContext(PokemonContext);
+    const { isLoading, changeIsLoading } = pokemonContext
+
     const [pokemonDetails, setPokemonDetails] = useState<PokeDataApiResponse>()
     const [image, setImage] = useState<number>(0);
     const [typeName, setTypeName] = useState<string>('')
@@ -47,7 +51,9 @@ const PokemonDetails: FC = ({ }) => {
     const backgroundColor = colors[pokemonDetails?.types[0].type.name as keyof typeof colors]
 
     const fetchPokemonData = async () => {
+        changeIsLoading(true)
         const response = await axios.get<PokeDataApiResponse>(`https://pokeapi.co/api/v2/pokemon/${pokeIndex}/`)
+        changeIsLoading(false)
         setPokemonDetails(response.data)
     }
 
@@ -58,7 +64,9 @@ const PokemonDetails: FC = ({ }) => {
     const imageUrls = [pokemonDetails?.sprites?.back_default, pokemonDetails?.sprites?.front_default, pokemonDetails?.sprites?.back_shiny, pokemonDetails?.sprites?.front_shiny];
 
     const onClose = () => setTypeName('')
-
+    if (isLoading) {
+        return <MainWrapper><Loader /></MainWrapper>
+    }
     return (
         <MainWrapper>
             {typeName && <RelatePokemonsModal onClose={onClose} typeName={typeName} />}
