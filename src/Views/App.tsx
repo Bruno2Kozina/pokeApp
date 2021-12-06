@@ -23,7 +23,7 @@ interface PokeApiResponse {
     results: PokemonType[]
 }
 
-interface PokemonsByTypeApiResponse {
+export interface PokemonsByTypeApiResponse {
     pokemon: {pokemon: PokemonType}[]
 }
 
@@ -58,6 +58,11 @@ const App = () => {
         changeItemsPerPage(pokemonCount);
     }
 
+    const fetchPokemonTypes = async () => {
+        const response = await axios.get<PokeTypeApiResponse>('https://pokeapi.co/api/v2/type/');
+        addPokeTypes(response.data.results)
+    }
+
     useEffect(() => {
         if (typeFilter == 'none') {
             fetchPokemons();
@@ -66,13 +71,7 @@ const App = () => {
         }
     }, [pageNumber, itemsPerPage, typeFilter])
 
-    console.log(typeFilter)
-
     useEffect(() => {
-        const fetchPokemonTypes = async () => {
-            const response = await axios.get<PokeTypeApiResponse>('https://pokeapi.co/api/v2/type/');
-            addPokeTypes(response.data.results)
-        }
         fetchPokemonTypes()
     }, [])
 

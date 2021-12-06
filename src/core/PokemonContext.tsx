@@ -23,8 +23,7 @@ interface IPokemonContext {
     changeIsLoading: (data: boolean) => void;
     pokemonsByTypes: IPokemon[];
     addPokemonsByTypes: (data: IPokemon[]) => void;
-    showModal: boolean;
-    changeShowModal: (data: boolean) => void;
+   
 }
 
 export const PokemonContext = createContext<IPokemonContext>(undefined as any);
@@ -38,7 +37,6 @@ export const PokemonProvider: FC = ({ children }) => {
     const [itemsPerPage, setItemsPerPage] = useState<number>(20)
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [pokemonsByTypes, setPokemonsByTypes] = useState<IPokemon[]>([])
-    const [showModal, setShowModal] = useState<boolean>(false)
 
     const addPokemons = (data: IPokemon[]) => {
         setPokemons(data);
@@ -73,12 +71,8 @@ export const PokemonProvider: FC = ({ children }) => {
         setPokemonsByTypes(data);
     };
 
-    const changeShowModal = (data: boolean) => {
-        setShowModal(data);
-    };
-
     return (
-        <PokemonContext.Provider value={{ pokemons, addPokemons, pokeTypes, addPokeTypes, searchValue, changeSearchValue, pageNumber, changePageNumber, pokemonCount, changePokemonCount, itemsPerPage, changeItemsPerPage, isLoading, changeIsLoading, pokemonsByTypes, addPokemonsByTypes, showModal, changeShowModal }}>
+        <PokemonContext.Provider value={{ pokemons, addPokemons, pokeTypes, addPokeTypes, searchValue, changeSearchValue, pageNumber, changePageNumber, pokemonCount, changePokemonCount, itemsPerPage, changeItemsPerPage, isLoading, changeIsLoading, pokemonsByTypes, addPokemonsByTypes }}>
             {children}
         </PokemonContext.Provider>
     )
