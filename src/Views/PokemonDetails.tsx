@@ -60,7 +60,7 @@ const PokemonDetails: FC = ({ }) => {
 
     useEffect(() => {
         fetchPokemonData()
-    }, [])
+    }, [pokeIndex])
 
     const imageUrls = [pokemonDetails?.sprites?.back_default, pokemonDetails?.sprites?.front_default, pokemonDetails?.sprites?.back_shiny, pokemonDetails?.sprites?.front_shiny];
 
