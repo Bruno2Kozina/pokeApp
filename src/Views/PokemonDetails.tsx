@@ -83,11 +83,11 @@ const PokemonDetails: FC = ({ }) => {
                 <h2 style={{ textAlign: 'center' }}> {pokemonDetails?.name} </h2>
                 <DetailsTypes>
                     {pokemonDetails?.types?.map((data: TypeType, i: any) => {
-                        return <span onClick={() => setTypeName(data.type.name)} style={{ padding: '4px', backgroundColor: colors[data.type.name[0] as keyof typeof colors] }} key={i}>{data.type.name}</span>
+                        return <span onClick={() => setTypeName(data.type.name)} style={{ borderRadius: '30%', padding: '4px', backgroundColor: colors[data.type.name as keyof typeof colors] }} key={i}>{data.type.name}</span>
                     })}
                 </DetailsTypes>
                 {pokemonDetails?.stats?.map((stat: StatsType) => (
-                    <DetailsStat bg='rgb(230,230,250)' maxWidth={stat.base_stat - 10 + '%'} >
+                    <DetailsStat bg={backgroundColor} maxWidth={stat.base_stat - 10 + '%'} >
                         <DetailsText>
                             {stat.stat.name.toUpperCase()}
                         </DetailsText>

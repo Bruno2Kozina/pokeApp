@@ -162,7 +162,7 @@ export const DetailsCard = styled.div`
     flex-direction: column;
     background-color: white;
     margin: 50px;
-    border: 3px solid skyblue;
+    box-shadow: 0px 6px 14px -4px #000000;
     border-radius: 4px;
 `
 
