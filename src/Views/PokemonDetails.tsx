@@ -39,11 +39,12 @@ interface PokeDataApiResponse {
 const PokemonDetails: FC = ({ }) => {
 
     const pokemonContext = useContext(PokemonContext);
-    const { isLoading, changeIsLoading } = pokemonContext
 
     const [pokemonDetails, setPokemonDetails] = useState<PokeDataApiResponse>()
     const [image, setImage] = useState<number>(0);
     const [typeName, setTypeName] = useState<string>('')
+
+    const [isLoading, setIsLoading] = useState(true)
 
     const params = useParams()
     const pokeIndex = params.pokemonId
@@ -51,9 +52,9 @@ const PokemonDetails: FC = ({ }) => {
     const backgroundColor = colors[pokemonDetails?.types[0].type.name as keyof typeof colors]
 
     const fetchPokemonData = async () => {
-        changeIsLoading(true)
+        setIsLoading(true)
         const response = await axios.get<PokeDataApiResponse>(`https://pokeapi.co/api/v2/pokemon/${pokeIndex}/`)
-        changeIsLoading(false)
+        setIsLoading(false)
         setPokemonDetails(response.data)
     }
 

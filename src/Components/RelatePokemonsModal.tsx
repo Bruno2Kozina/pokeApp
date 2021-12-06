@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PokemonCard from './PokemonCard';
 import { PokemonContext } from '../core/PokemonContext';
 import { Background, ListContainer, ListContainerBox, ModalWrapper } from '../core/Styles'
@@ -16,13 +16,15 @@ interface IProps {
 const RelatePokemonsModal: FC<IProps> = ({ onClose, typeName }) => {
 
     const pokemonContext = useContext(PokemonContext);
-    const { isLoading, addPokemons, changeIsLoading } = pokemonContext
+    const { addPokemons } = pokemonContext
+
+    const [isLoading, setIsLoading] = useState(true)
+
 
     const fetchPokemonsByType = async () => {
-        changeIsLoading(true)
         const response = await axios.get<PokemonsByTypeApiResponse>(`https://pokeapi.co/api/v2/type/${typeName}`);
         addPokemons(response.data.pokemon.map(poke => poke.pokemon))
-        changeIsLoading(false)
+        setIsLoading(false)
     }
 
     useEffect(() => {

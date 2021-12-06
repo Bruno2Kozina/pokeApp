@@ -34,16 +34,17 @@ interface PokeTypeApiResponse {
 const App = () => {
 
     const pokemonContext = useContext(PokemonContext);
-    const { addPokemons, pokeTypes, addPokeTypes, searchValue, changeSearchValue, pageNumber, changePageNumber, pokemonCount, changePokemonCount, itemsPerPage, changeItemsPerPage, changeIsLoading, isLoading } = pokemonContext
-
+    const { addPokemons, pokeTypes, addPokeTypes, searchValue, changeSearchValue, pageNumber, changePageNumber, pokemonCount, changePokemonCount, itemsPerPage, changeItemsPerPage } = pokemonContext
+    
     const [typeFilter, setTypeFilter] = useState('none')
+    const [isLoading, setIsLoading] = useState(true)
 
     const fetchPokemons = async () => {
-        changeIsLoading(true)
+        setIsLoading(true)
         const response = await axios.get<PokeApiResponse>(`https://pokeapi.co/api/v2/pokemon?limit=${itemsPerPage}&offset=${pageNumber * itemsPerPage}`);
         addPokemons(response.data.results)
         changePokemonCount(response.data.count)
-        changeIsLoading(false)
+        setIsLoading(false)
     }
 
     const fetchPokemonsByType = async () => {
