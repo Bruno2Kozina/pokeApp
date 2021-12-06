@@ -1,6 +1,22 @@
 import styled from 'styled-components'
 import backgroundLightImg from '../Assets/Images/backgroundLightImg.jpeg'
 
+interface DetailsContainerProps {
+    readonly direction?: string;
+    readonly bg?: string
+}
+
+interface DetailsImage {
+    readonly br?: string;
+    readonly border?: string;
+    readonly display?: string;
+    src?: any;
+}
+
+interface DetailsStatProps {
+    readonly bg?: string
+    readonly maxWidth?: string
+}
 
 export const MainWrapper = styled("div")<{}>`
     background-image: url(${backgroundLightImg});
@@ -23,7 +39,7 @@ export const MainWrapper = styled("div")<{}>`
     }
 
     .findPokeInput {
-        margin-top: 20px;
+        margin: 5px 0;
     }
 `
 
@@ -85,6 +101,7 @@ export const Pagination = styled.div`
     height: 10vh;
 
     .paginationBttns {
+        padding: 0;
         width: 80%;
         height: 40px;
         list-style: none;
@@ -107,79 +124,55 @@ export const Pagination = styled.div`
     }
 `
 
-export const InputComponent = styled.div`
-
-    
-`
-
-interface DetailsContainerProps {
-    readonly direction?: string;
-    readonly bg?: string
-}
-
-interface DetailsImage {
-    readonly br?: string;
-    readonly border?: string;
-    readonly display?: string;
-    src?: any;
-}
-
-interface DetailsStatProps {
-    readonly bg?: string
-    readonly width?: string
-}
-
-
 export const DetailsContainer = styled.div<DetailsContainerProps>`
-  display: flex;
-  flex-direction: ${props => props.direction || "row"};
-  align-items: center;
-  justify-content: center;
-  background-color: ${props => props.bg};
+    display: flex;
+    flex-direction: ${props => props.direction || "row"};
+    align-items: center;
+    justify-content: center;
+    background-color: ${props => props.bg};
 `;
 
 export const DetailsCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  border-radius: 4px;
-  margin: 50px;
-  border: 2px solid skyblue;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin: 50px;
+    border: 3px solid skyblue;
+    border-radius: 4px;
 `
 
 export const DetailsImage = styled.img<DetailsImage>`
-  width: ${props => props.width};
-  heigth: ${props => props.height};
-  border: ${props => props.border || "none"};
-  display: ${props => props.display || "block"};
-  border-radius: ${props => props.br || "none"};
+    width: ${props => props.width};
+    heigth: ${props => props.height};
+    border: ${props => props.border || "none"};
+    display: ${props => props.display || "block"};
+    border-radius: ${props => props.br || "none"};
 `;
 
 export const DetailsImageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  
+    display: flex;
+    flex-direction: column;
 `;
 
 export const DetailsStat = styled.div<DetailsStatProps>`
-  background-color: ${props => props.bg};
-  width: ${props => props.width};
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 10px;
-  padding: 0 5px;
+    background-color: ${props => props.bg};
+    max-width: ${props => props.maxWidth};
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 0 5px;
 `
 
-
 export const DetailsTypes = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 10px;
-  padding: 0 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+    padding: 0 5px;
+    cursor: pointer;
 `
 
 export const DetailsText = styled.div`
-
+    white-space: nowrap;
  `

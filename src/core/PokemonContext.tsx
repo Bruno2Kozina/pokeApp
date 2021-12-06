@@ -77,7 +77,6 @@ export const PokemonProvider: FC = ({ children }) => {
         setShowModal(data);
     };
 
-
     return (
         <PokemonContext.Provider value={{ pokemons, addPokemons, pokeTypes, addPokeTypes, searchValue, changeSearchValue, pageNumber, changePageNumber, pokemonCount, changePokemonCount, itemsPerPage, changeItemsPerPage, isLoading, changeIsLoading, pokemonsByTypes, addPokemonsByTypes, showModal, changeShowModal }}>
             {children}

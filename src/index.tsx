@@ -10,19 +10,18 @@ import {
 } from "react-router-dom";
 import PokemonDetails from './Views/PokemonDetails';
 
-
 ReactDOM.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <PokemonProvider>
-      <Routes>
-            <Route path="pokemon/:pokemonId" element={<PokemonDetails />} />
-            <Route path="/" element={<App />} />
-      </Routes>
-      </PokemonProvider>
-    </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <React.StrictMode>
+        <BrowserRouter>
+            <PokemonProvider>
+                <Routes>
+                    <Route path="pokemon/:pokemonId" element={<PokemonDetails />} />
+                    <Route path="/" element={<App />} />
+                </Routes>
+            </PokemonProvider>
+        </BrowserRouter>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

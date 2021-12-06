@@ -8,28 +8,23 @@ type IProps = {
     name: string
 }
 
-
 const PokemonCard: FC<IProps> = ({ name, url }) => {
-
-
-
 
   const pokeUrl = url.split('/');
   const pokeIndex = pokeUrl[pokeUrl.length - 2]
   const pokeImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeIndex}.png`
 
-  return (
-    <div> {
-     <Link
-        style={{ textDecoration: 'none', color: 'black' }}
-        to={`pokemon/${pokeIndex}`} // Link to PokemonDetails.tsx
-        >
-      <CardWrapper>
-        <img style={{ width: '6em', height: '6em', paddingTop: '20px' }} src={pokeImage} onError={imageOnErrorHandler}/> 
-        <CardName>{name}</CardName>
-      </CardWrapper>
-      </Link>}</div>
-  );
+    return (
+        <div> {
+            <Link style={{ textDecoration: 'none', color: 'black' }} to={`pokemon/${pokeIndex}`}> 
+                <CardWrapper>
+                    <img style={{ width: '6em', height: '6em', paddingTop: '20px' }} src={pokeImage} onError={imageOnErrorHandler}/> 
+                    <CardName>{name}</CardName>
+                </CardWrapper>
+            </Link>
+            }
+        </div>
+    );
 }
 
 export default PokemonCard;
